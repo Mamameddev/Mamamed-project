@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-mama-blue: #0c3c60;
+  --color-mama-orange: #f15a24;
+  --color-mama-ice: #f0f7fb;
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-jakarta);
+}
+
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #fff; color: #2b3540; font-family: var(--font-inter), Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+::selection { background: #ffe2d5; color: #0c3c60; }
+a, button { -webkit-tap-highlight-color: transparent; }
+a:focus-visible, button:focus-visible, main:focus-visible { outline: 3px solid #0c3c60; outline-offset: 6px; }
+.page-container { width: min(100% - 96px, 1200px); margin-inline: auto; }
+.skip-link { position: fixed; top: 12px; left: 12px; z-index: 20; padding: 12px 20px; border-radius: 8px; background: #0c3c60; color: white; transform: translateY(-160%); }
+.skip-link:focus { transform: translateY(0); }
+.site-header { border-bottom: 1px solid #e2edf3; }
+.header-inner { min-height: 112px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.logo-link { display: inline-flex; border-radius: 4px; }
+.brand-logo { width: 104px; height: auto; }
+.donation-control { display: flex; flex-direction: column; align-items: center; gap: 7px; }
+.donate-button { display: flex; align-items: center; justify-content: center; gap: 22px; border: 0; border-radius: 9999px; background: #f15a24; color: #fff; font: 700 15px/20px var(--font-jakarta), sans-serif; padding: 12px 25px; cursor: not-allowed; }
+.donate-button span { font-size: 19px; }
+#donation-status { font-size: 10px; line-height: 15px; color: #596773; }
+.hero { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 64px; padding-block: 88px 84px; }
+.eyebrow { display: flex; align-items: center; gap: 9px; margin: 0 0 23px; color: #ad3300; font-size: 11px; line-height: 18px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; }
+.accent-dot { flex: 0 0 6px; width: 6px; height: 6px; border-radius: 50%; background: #f15a24; }
+h1 { margin: 0; font-family: var(--font-jakarta), sans-serif; font-size: clamp(40px, 4.1vw, 56px); line-height: 1.14; font-weight: 800; letter-spacing: -.045em; color: #0c3c60; text-wrap: balance; }
+h1 span { display: block; }
+.mission { margin: 26px 0 0; font-size: 16px; line-height: 1.85; color: #53616d; max-width: 52ch; }
+.coming-soon { display: flex; align-items: center; gap: 12px; margin-top: 31px; }
+.coming-soon p { margin: 0; font-size: 13px; line-height: 21px; font-weight: 500; color: #0c3c60; }
+.status-icon { display: grid; place-items: center; flex-shrink: 0; width: 34px; height: 34px; color: #ad3300; background: #fff3ed; border-radius: 50%; }
+.status-icon svg { width: 20px; height: 20px; }
+.hero-visual { position: relative; padding-top: 12px; }
+.image-accent { position: absolute; top: 0; right: -12px; width: 58%; height: 72%; border-radius: 28px; background: #f0f7fb; z-index: -1; }
+.hero-image { display: block; width: 100%; height: 400px; object-fit: cover; object-position: 51% center; border-radius: 24px; }
+.image-note { display: flex; align-items: center; gap: 8px; margin: 16px 0 0; color: #596773; font-size: 10px; line-height: 16px; letter-spacing: .045em; }
+.image-note span { width: 17px; height: 2px; background: #f15a24; }
+.impact { background: #f0f7fb; border-block: 1px solid #e2edf3; }
+.impact-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding-block: 37px; }
+.impact-grid > div { min-width: 0; container-type: inline-size; display: flex; flex-direction: column-reverse; align-items: center; justify-content: center; gap: 9px; text-align: center; padding-inline: 15px; }
+.impact-grid > div + div { border-left: 1px solid #d6e3ec; }
+.impact dt { overflow-wrap: anywhere; font-size: 10px; line-height: 16px; font-weight: 600; letter-spacing: .11em; text-transform: uppercase; color: #53616d; }
+.impact dd { margin: 0; font-family: var(--font-jakarta), sans-serif; font-size: clamp(20px, 35cqi, 38px); line-height: 46px; font-weight: 800; letter-spacing: -.04em; color: #0c3c60; }
+.impact dd span { color: #ad3300; font-weight: 600; }
+.impact dd.impact-country { font-size: clamp(16px, 28cqi, 30px); letter-spacing: -.03em; }
+.footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding-block: 37px; }
+.site-footer p { margin: 0; font-size: 11px; line-height: 20px; color: #596773; }
+.site-footer .footer-brand { margin-bottom: 5px; font: 800 19px/26px var(--font-jakarta), sans-serif; color: #0c3c60; letter-spacing: -.04em; }
+.footer-location span { padding-inline: 10px; color: #a0afbb; }
+@media (max-width: 1023px) {
+  .page-container { width: calc(100% - 64px); }
+  .hero { grid-template-columns: 1fr; gap: 38px; padding-block: 56px; }
+  .hero-copy { max-width: 650px; }
+  h1 { font-size: 48px; max-width: 620px; }
+  .mission { max-width: 65ch; }
+  .hero-image { height: auto; aspect-ratio: 16 / 10; }
+  .image-accent { right: -10px; }
+}
+@media (max-width: 639px) {
+  .page-container { width: calc(100% - 40px); }
+  .header-inner { min-height: 94px; }
+  .brand-logo { width: 85px; }
+  .donate-button { padding: 10px 21px; gap: 16px; min-height: 44px; font-size: 13px; }
+  #donation-status { font-size: 9px; }
+  .hero { padding-block: 39px 35px; gap: 29px; }
+  .eyebrow { font-size: 10px; letter-spacing: .08em; margin-bottom: 17px; }
+  h1 { font-size: 36px; line-height: 1.22; letter-spacing: -.04em; }
+  .mission { font-size: 14px; line-height: 1.8; margin-top: 20px; }
+  .coming-soon { margin-top: 23px; gap: 10px; }
+  .coming-soon p { font-size: 11px; }
+  .hero-image { aspect-ratio: 1.27; border-radius: 18px; }
+  .image-accent { border-radius: 21px; right: -7px; }
+  .image-note { font-size: 9px; margin-top: 12px; }
+  .impact-grid { padding-block: 27px; }
+  .impact-grid > div { padding-inline: 7px; gap: 7px; }
+  .impact dd { font-size: 28px; line-height: 36px; }
+  .impact dd.impact-country { font-size: 21px; }
+  .impact dt { overflow-wrap: anywhere; font-size: 8px; line-height: 13px; letter-spacing: .045em; }
+  .footer-inner { align-items: flex-start; flex-direction: column; gap: 13px; padding-block: 28px; }
+  .site-footer p { font-size: 10px; }
+}
