@@ -46,7 +46,7 @@ src/app/                   Page, layout, styles, icons, robots, sitemap
 src/components/layout/     Header and footer
 src/components/sections/   Coming Soon hero and impact strip
 src/lib/                   Site information and URL validation
-public/images/             Optimized logo, clinic illustration, social card
+public/images/             Optimized logo, outreach hero image, social card
 tests/                    URL normalization regression tests
 ```
 
@@ -54,7 +54,7 @@ tests/                    URL normalization regression tests
 
 White canvas, ocean blue `#0C3C60`, orange `#F15A24`, and ice blue `#F0F7FB`. Headings use Plus Jakarta Sans; body text uses Inter. Small orange text uses darker `#AD3300` for contrast. The Donate button is intentionally disabled, with a visible explanation.
 
-The supplied clinic image is illustrative UI-generation imagery, not a verified photograph of an actual outreach. The approved figures are 250+ women reached and 2 community outreaches. No founder image, fabricated contact links, payment integration, or video is included. The favicon is derived from the supplied logo emblem; the static social card combines the supplied logo and clinic image. All production images are local.
+The hero uses the supplied community gathering image. Its caption and alt text do not assert a verified event or location. The approved figures are 250+ women reached and 2 community outreaches. No founder image, fabricated contact links, payment integration, or video is included. The favicon is derived from the supplied logo emblem; the static social card combines the supplied logo and clinic image. All production images are local.
 
 ## Deployment to Vercel
 
@@ -88,7 +88,7 @@ Reference: [Vercel custom domain setup](https://vercel.com/docs/domains/working-
 
 - Apex loads publicly; www redirects to apex; HTTP redirects to HTTPS.
 - HTTPS has a valid certificate, with no mixed-content warnings.
-- Logo, clinic image, favicon, and social image load.
+- Logo, hero image, favicon, and social image load.
 - `/robots.txt` allows crawling and references the correct sitemap.
 - `/sitemap.xml` contains the canonical homepage.
 - Page source has the correct canonical, `og:url`, social image URLs, and JSON-LD URLs.

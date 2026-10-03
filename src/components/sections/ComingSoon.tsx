@@ -18,10 +18,10 @@ export function ComingSoon() {
         <div className="hero-visual">
           <div className="image-accent" aria-hidden="true" />
           <Image
-            src="/images/mamameds-clinic.webp"
-            alt="Illustration of a woman receiving a MamaMeds bag from a healthcare worker in a clinic."
-            width={1376}
-            height={768}
+            src="/images/mamameds-outreach.webp"
+            alt="A pregnant woman receiving a MamaMeds bag from a team member, surrounded by women at a community gathering."
+            width={1280}
+            height={956}
             sizes="(min-width: 1280px) 560px, (min-width: 1024px) 46vw, (min-width: 640px) calc(100vw - 64px), calc(100vw - 40px)"
             className="hero-image"
             preload
