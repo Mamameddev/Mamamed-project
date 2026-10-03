@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { Clock3 } from 'lucide-react';
 
 export function ComingSoon() {
   return (
@@ -10,7 +11,7 @@ export function ComingSoon() {
           <p className="mission">MamaMeds works to improve maternal health outcomes in Nigeria by expanding access to essential antenatal medications, maternal health education, and community-based support.</p>
           <div className="coming-soon">
             <span className="status-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 3v4m0 10v4M3 12h4m10 0h4M5.6 5.6l2.8 2.8m7.2 7.2 2.8 2.8M5.6 18.4l2.8-2.8m7.2-7.2 2.8-2.8" /></svg>
+              <Clock3 size={18} strokeWidth={2} aria-hidden="true" focusable="false" />
             </span>
             <p>Our new website is coming soon.</p>
           </div>

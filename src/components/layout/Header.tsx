@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { Heart } from 'lucide-react';
 import { site } from '@/lib/site';
 
 export function Header() {
@@ -11,7 +12,7 @@ export function Header() {
         </Link>
         <div className="donation-control">
           <button type="button" disabled aria-describedby="donation-status" className="donate-button">
-            Donate <span aria-hidden="true">↗</span>
+            Donate <Heart size={18} strokeWidth={2} aria-hidden="true" focusable="false" />
           </button>
           <span id="donation-status">Donations coming soon</span>
         </div>
