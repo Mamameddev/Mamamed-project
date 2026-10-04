@@ -84,3 +84,9 @@ h1 span { display: block; }
   .footer-inner { align-items: flex-start; flex-direction: column; gap: 13px; padding-block: 28px; }
   .site-footer p { font-size: 10px; }
 }
+
+.footer-details { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.instagram-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: #0c3c60; font-size: 12px; font-weight: 600; text-decoration: none; border-radius: 4px; }
+.instagram-link svg { flex-shrink: 0; }
+.instagram-link:hover { color: #ad3300; text-decoration: underline; text-underline-offset: 4px; }
+@media (max-width: 639px) { .footer-details { align-items: flex-start; } }

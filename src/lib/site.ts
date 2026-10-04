@@ -7,5 +7,6 @@ export const site = {
   description: 'MamaMeds works to improve maternal health outcomes in Nigeria through essential antenatal medications, maternal health education, and community-based support.',
   url: normalizeSiteUrl(process.env.NEXT_PUBLIC_SITE_URL, process.env.NODE_ENV === 'production'),
   logo: '/images/mamameds-logo.webp',
-  socialImage: '/images/mamameds-social.jpg',
+  socialImage: '/images/mamameds-social-outreach.jpg',
+  instagram: { handle: '@mamamedsng', url: 'https://www.instagram.com/mamamedsng/' },
 } as const;

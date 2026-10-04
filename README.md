@@ -52,9 +52,9 @@ tests/                    URL normalization regression tests
 
 ## Design and assets
 
-White canvas, ocean blue `#0C3C60`, orange `#F15A24`, and ice blue `#F0F7FB`. Headings use Plus Jakarta Sans; body text uses Inter. Small orange text uses darker `#AD3300` for contrast. The Donate button is intentionally disabled, with a visible explanation. Icons use named imports from `lucide-react`: Heart for donations and Clock3 for the Coming Soon status. Keep icons decorative when adjacent text provides the label (`aria-hidden="true"`), and use consistent 2px strokes.
+White canvas, ocean blue `#0C3C60`, orange `#F15A24`, and ice blue `#F0F7FB`. Headings use Plus Jakarta Sans; body text uses Inter. Small orange text uses darker `#AD3300` for contrast. The Donate button is intentionally disabled, with a visible explanation. Icons use named imports from `lucide-react`: Heart for donations and Clock3 for the Coming Soon status, and Camera for the Instagram footer link. Keep icons decorative when adjacent text provides the label (`aria-hidden="true"`), and use consistent 2px strokes.
 
-The hero uses the supplied community gathering image. Its caption and alt text do not assert a verified event or location. The approved figures are 250+ women reached and 2 community outreaches. No founder image, fabricated contact links, payment integration, or video is included. The favicon is derived from the supplied logo emblem; the static social card combines the supplied logo and clinic image. All production images are local.
+The hero uses the supplied community gathering image. Its caption and alt text do not assert a verified event or location. The approved figures are 250+ women reached and 2 community outreaches. The footer links to the supplied Instagram account, @mamamedsng. No founder image, fabricated contact links, payment integration, or video is included. The favicon is derived from the supplied logo emblem; the static social-sharing image uses a 1200 × 630 crop of the current outreach hero, with a distinct asset URL to refresh image caches. All production images are local.
 
 ## Deployment to Vercel
 
