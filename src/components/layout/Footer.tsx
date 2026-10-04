@@ -1,4 +1,4 @@
-import { Camera } from 'lucide-react';
+import { SiInstagram } from '@icons-pack/react-simple-icons';
 import { site } from '@/lib/site';
 
 export function Footer() {
@@ -12,7 +12,7 @@ export function Footer() {
         <div className="footer-details">
           <p className="footer-location">Nigeria <span aria-hidden="true">/</span> United States</p>
           <a className="instagram-link" href={site.instagram.url} aria-label={`MamaMeds on Instagram (${site.instagram.handle})`}>
-            <Camera size={18} strokeWidth={2} aria-hidden="true" focusable="false" />
+            <SiInstagram size={18} aria-hidden="true" focusable="false" />
             <span>{site.instagram.handle}</span>
           </a>
         </div>
