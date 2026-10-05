@@ -1,6 +1,6 @@
 # MamaMeds Website
 
-Phase 1 Coming Soon website for MamaMeds Maternal Health Foundation, supporting maternal health in Nigeria. Built from the approved Stitch direction. This delivery is deploy-ready; publishing and DNS changes are separate steps.
+Phase 2 full-page draft for MamaMeds Maternal Health Foundation, supporting maternal health in Nigeria. Built from the approved Stitch direction. This delivery is deploy-ready; publishing and DNS changes are separate steps.
 
 ## Tech stack
 
@@ -43,18 +43,18 @@ The first build needs network access to download the Google font files. Visitors
 
 ```text
 src/app/                   Page, layout, styles, icons, robots, sitemap
-src/components/layout/     Header and footer
-src/components/sections/   Coming Soon hero and impact strip
-src/lib/                   Site information and URL validation
+src/components/layout/     Header, responsive navigation, and footer
+src/components/sections/   Full landing-page sections
+src/lib/                   Site information, editable content, and URL validation
 public/images/             Optimized logo, outreach hero image, social card
 tests/                    URL normalization regression tests
 ```
 
 ## Design and assets
 
-White canvas, ocean blue `#0C3C60`, orange `#F15A24`, and ice blue `#F0F7FB`. Headings use Plus Jakarta Sans; body text uses Inter. Small orange text uses darker `#AD3300` for contrast. The Donate button is intentionally disabled, with a visible explanation. Icons use named imports from `lucide-react`: Heart for donations and Clock3 for the Coming Soon status, with the Instagram brand icon supplied by `@icons-pack/react-simple-icons` for the footer profile link. Keep icons decorative when adjacent text provides the label (`aria-hidden="true"`), and use consistent 2px strokes.
+White canvas, ocean blue `#0C3C60`, orange `#F15A24`, and ice blue `#F0F7FB`. Headings use Plus Jakarta Sans; body text uses Inter. Small orange text uses darker `#AD3300` for contrast. Navigation points to real page sections; donation processing remains disabled with a visible explanation. Lucide supplies interface icons, while Simple Icons supplies the actual Instagram brand icon. Decorative icons are hidden from screen readers.
 
-The hero uses the supplied community gathering image. Its caption and alt text do not assert a verified event or location. The approved figures are 250+ women reached and 2 community outreaches. The footer links to the supplied Instagram account, @mamamedsng. No founder image, fabricated contact links, payment integration, or video is included. The favicon is derived from the supplied logo emblem; the static social-sharing image uses a 1200 × 630 split layout with the logo and mission headline on the left and the current outreach hero on the right, with a distinct asset URL to refresh image caches. All production images are local.
+The Phase 2 draft uses branded text panels until real hero/founder photography is supplied. The approved impact figures are 250+ women reached and 2 community outreaches. The footer and Contact section link to @mamamedsng. No contact details or volunteer URL are fabricated. The favicon uses the supplied logo emblem; the current social-sharing card contains branding and the mission headline only. Old generated media are retained as historical assets but are not referenced by the current page or metadata.
 
 ## Deployment to Vercel
 
@@ -100,7 +100,7 @@ Use `dig <official-domain>`, `dig www.<official-domain>`, and `curl -I https://<
 
 ## SEO
 
-Next.js Metadata API provides title, description, canonical URL, index/follow directives, Open Graph, and Twitter cards. Organization JSON-LD contains only the known name, description, URL, and logo. The sitemap contains only the homepage. No social accounts, addresses, or registration details are inferred.
+Next.js Metadata API provides title, description, canonical URL, index/follow directives, Open Graph, and Twitter cards. Organization JSON-LD contains only the known name, description, URL, and logo. The sitemap contains only the homepage. No addresses or registration details are inferred; Instagram is the account explicitly supplied by the user.
 
 ## Project phases
 
@@ -113,3 +113,24 @@ The production domain and account access are still needed for launch, but not fo
 ## Dependency audit note
 
 At implementation, `npm audit --omit=dev` reported no production vulnerabilities. The full audit reports five high-severity entries arising from one unpatched `braces` advisory in the current Next.js ESLint dependency chain. This is build/lint tooling, not shipped page code. No patched compatible upstream release was available; do not apply the suggested forced downgrade to an older Next.js ESLint configuration. Recheck when updating dependencies.
+
+
+## Phase 2 content handoff
+
+The full-page draft is implemented locally. The seven supplied Cloudinary clips are connected. The temporary Google Form is connected. Real hero/founder photos and final founder-copy approval are still needed before launch. No CMS or payment integration is included. The current social card uses branding only; replace it with a branded card featuring approved real photography when supplied. Previous generated images are not referenced by the draft.
+
+Edit `src/lib/content.ts`:
+
+- `hero` and `founder`: approved real photos with `src`, descriptive `alt`, and intrinsic `width`/`height`. Use local `/images/...` paths or direct `https://res.cloudinary.com/...` image URLs. Null displays a branded text panel instead.
+- `community`: optional real photos with the same shape. An empty array hides the photo gallery.
+- `videos`: the two featured outreach montages; `outreachMoments`: four short clips behind an expandable control; `testimonial`: Tobi’s interview beside the Volunteer section. Each entry contains a unique `id`, accurate `title` and `description`, a direct HTTPS video `src`, and preferably a `poster` URL. Use Cloudinary delivery URLs rather than management-console or sharing-page URLs. Use broadly supported MP4/H.264/AAC files prepared at an appropriate mobile bitrate; Cloudinary hosting alone does not make a large original lightweight.
+- For spoken videos, supply accurate WebVTT `captions` (`src`, `language`, `label`) and a `transcript`. Ensure the video/caption host permits cross-origin access. Do not publish speech-based videos without reviewing captions.
+- `volunteerFormUrl`: the real Google Form URL, or null to show an honest availability message and the existing Instagram contact link.
+
+Videos reserve a 9:16 area and preserve the complete frame with `object-fit: contain`. Initially only lazy WebP posters and accessible play buttons render: there is no video element, media source, or MP4 request until a visitor presses Play. The selected video then mounts with native controls/inline playback; only one clip plays at a time across all sections. Failures display a retry button and a link to the original. The four extra clips do not mount until expanded; collapsing them removes their players. No autoplay on page load and no third-party player/embed scripts.
+
+Delivery URLs were measured against the originals. Six clips use Cloudinary `c_limit,w_480,h_854,q_auto:good,vc_h264` (never upscale these small originals); IMG_4593 uses the original because that transformation increased its size. The selected files total about 10.2 MB versus 14.5 MB for the originals, downloaded individually on demand. Featured poster images total about 81 KB; the four extra posters add about 105 KB only when expanded. These are measured file sizes, not a promise of load time on every network.
+
+The first montage documents the first Lagos outreach; IMG_4593 is the second-outreach montage; IMG_4599 is Tobi’s interview, with captions already burned into the supplied video. Other clips are brief attendee/bag scenes. Source framing, embedded text, audio, and watermarks remain intact. Separate accurate WebVTT captions/transcripts can be added; do not claim an audio transcription has been independently verified.
+
+The mission, programme descriptions, About section, founder narrative and quotation, and donation copy follow the founder-provided reference shared on October 5. Final founder-copy approval is still pending. Registration and 501(c)(3) claims from that reference are omitted until confirmed. The draft does not claim registration status, invent contact information, or quote unverified statements as her words. Header Donate links to the donation section; payment remains disabled. The mobile menu supports Escape and closes on section selection.

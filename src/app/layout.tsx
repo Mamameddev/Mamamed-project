@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website', locale: 'en_NG', siteName: site.name,
     title: site.title, description: site.description, url: site.url,
-    images: [{ url: site.socialImage, width: 1200, height: 630, alt: 'MamaMeds — Every mother deserves a safe pregnancy. Community outreach.' }],
+    images: [{ url: site.socialImage, width: 1200, height: 630, alt: 'MamaMeds — Every mother deserves a safe pregnancy.' }],
   },
   twitter: { card: 'summary_large_image', title: site.title, description: site.description, images: [site.socialImage] },
 };

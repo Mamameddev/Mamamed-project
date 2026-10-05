@@ -1,6 +1,6 @@
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
-import { ComingSoon } from '@/components/sections/ComingSoon';
+import { LandingPage } from '@/components/sections/LandingPage';
 import { site } from '@/lib/site';
 
 export default function Home() {
@@ -13,7 +13,7 @@ export default function Home() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organization).replace(/</g, '\\u003c') }} />
       <Header />
-      <main id="main-content" tabIndex={-1}><ComingSoon /></main>
+      <main id="main-content" tabIndex={-1}><LandingPage /></main>
       <Footer />
     </>
   );
