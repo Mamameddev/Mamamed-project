@@ -11,18 +11,21 @@ export type OutreachVideo = {
   captions?: { src: string; language: string; label: string };
   transcript?: string;
 };
+export type GalleryItem = { kind: 'video'; video: OutreachVideo } | { kind: 'photo'; id: string; photo: Photo; caption?: string };
 export const content: {
   hero: Photo | null;
   founder: Photo | null;
   community: Photo[];
+  workPhotos: Partial<Record<'medications' | 'education' | 'outreach', Photo>>;
   videos: OutreachVideo[];
   outreachMoments: OutreachVideo[];
   testimonial: OutreachVideo | null;
   volunteerFormUrl: string | null;
 } = {
-  hero: null,
+  hero: { src: 'https://res.cloudinary.com/bmcmy4kk/image/upload/c_limit,w_1280,q_auto,f_auto/v1791315047/photo_2026-10-06_19-30-35.jpg', alt: 'Women at a MamaMeds outreach holding MamaMeds bags', width: 1280, height: 1277 },
   founder: { src: '/images/kasite-ugo-beke.webp', alt: 'Kasite Ugo-Beke, founder of MamaMeds', width: 591, height: 887 },
   community: [],
+  workPhotos: {},
   videos: [
     {
         "id": "first-outreach",

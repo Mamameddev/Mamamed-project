@@ -13,7 +13,7 @@ export function Footer() {
           <ContactLinks />
         </div>
         <div className="footer-meta">
-          <p>{site.organizationName}</p>
+          <p>{site.organizationName} is a registered 501(c)(3) nonprofit organization.</p>
           <p className="footer-location">Nigeria <span aria-hidden="true">/</span> United States</p>
         </div>
       </div>

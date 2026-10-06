@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { OutreachVideos, MoreOutreachVideos } from '../src/components/media/OutreachVideos';
+import { OutreachVideos, OutreachGallery } from '../src/components/media/OutreachVideos';
 import type { OutreachVideo } from '../src/lib/content';
 
 const videos: OutreachVideo[] = [{
@@ -30,9 +30,12 @@ test('initial video card only renders a lazy poster and accessible play action',
   assert(!html.includes('outreach.mp4'));
 });
 
-test('additional clips do not mount or fetch posters before expansion', () => {
-  const html = renderToStaticMarkup(createElement(MoreOutreachVideos, { videos }));
-  assert(html.includes('aria-expanded="false"'));
-  assert(!html.includes('<img'));
+test('swipeable gallery renders posters but no initial video sources', () => {
+  const html = renderToStaticMarkup(createElement(OutreachGallery, { items: videos.map(video => ({ kind: 'video' as const, video })) }));
+  assert(html.includes('Next outreach moment'));
+  assert(html.includes('Previous outreach moment'));
+  assert(html.includes('outreach-gallery-track'));
+  assert(html.includes('<img'));
   assert(!html.includes('<video'));
+  assert(!html.includes('outreach.mp4'));
 });

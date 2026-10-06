@@ -1,8 +1,14 @@
 import Image from 'next/image';
-import { Heart, Mail, Users } from 'lucide-react';
+import { Heart, Mail, Users, Pill, BookOpen } from 'lucide-react';
 import { content } from '@/lib/content';
 import { site } from '@/lib/site';
-import { OutreachVideos, MoreOutreachVideos, VideoCard } from '@/components/media/OutreachVideos';
+import { OutreachVideos, OutreachGallery, VideoCard } from '@/components/media/OutreachVideos';
+
+const work = [
+  { id: 'medications', icon: Pill, title: 'Essential medications', text: 'Providing antenatal medications and supplements to pregnant women who need them.' },
+  { id: 'education', icon: BookOpen, title: 'Maternal health education', text: 'Helping women understand the medications they receive and supporting informed, healthy pregnancies.' },
+  { id: 'outreach', icon: Users, title: 'Community outreach', text: 'Partnering with healthcare providers and community organizations to reach women directly.' },
+] as const;
 
 const milestones = [
   { label: 'So far', title: '250+', text: 'women reached', current: true },
@@ -25,8 +31,16 @@ export function LandingPage() {
 
     <section id="about" className="direction-section section-space" aria-labelledby="direction-title"><div className="page-container editorial-grid">
       <div><p className="eyebrow">About MamaMeds</p><h2 id="direction-title">Where we’re headed.</h2></div>
-      <div className="editorial-copy"><p>Today, we deliver antenatal medications and education through community outreach. Next, we&apos;re building a model to help community health workers prevent postpartum hemorrhage, one of the leading causes of maternal death, starting with a pilot in 2027.</p><p>Our work starts with a simple belief: where a woman lives or what she earns should not determine her access to the resources needed for a healthy pregnancy.</p></div>
+      <div className="editorial-copy"><p>MamaMeds is a registered 501(c)(3) nonprofit.</p><p>Today, we deliver antenatal medications and education through community outreach. Next, we&apos;re building a model to help community health workers prevent postpartum hemorrhage, one of the leading causes of maternal death, starting with a pilot in 2027.</p><p>Our work starts with a simple belief: where a woman lives or what she earns should not determine her access to the resources needed for a healthy pregnancy.</p></div>
     </div></section>
+
+    <section id="our-work" className="page-container section-space" aria-labelledby="work-title">
+      <p className="eyebrow">Our work</p><h2 id="work-title">Supporting healthier pregnancies.</h2>
+      <div className="work-grid">{work.map(({ id, icon: Icon, title, text }) => <article className="work-card" key={id}>
+        {content.workPhotos[id] && <Image {...content.workPhotos[id]} alt={content.workPhotos[id].alt} className="work-photo" sizes="(min-width: 1024px) 30vw, 90vw" />}
+        <div className="feature-icon"><Icon size={25} aria-hidden="true" /></div><h3>{title}</h3><p>{text}</p>
+      </article>)}</div>
+    </section>
 
     <section id="impact" className="impact section-space" aria-labelledby="impact-title"><div className="page-container">
       <p className="eyebrow">Progress with purpose</p><h2 id="impact-title">Impact &amp; roadmap</h2>
@@ -36,8 +50,7 @@ export function LandingPage() {
 
     <section id="stories" className="community-section section-space" aria-labelledby="stories-title"><div className="page-container">
       <p className="eyebrow">Stories</p><h2 id="stories-title">This is what support looks like.</h2><p className="section-intro">Meet the people and see the moments behind our work, through stories from our outreach.</p>
-      <OutreachVideos videos={content.videos} /><MoreOutreachVideos videos={content.outreachMoments} />
-      {content.community.length > 0 && <div className="photo-grid">{content.community.map(photo => <Image key={photo.src} {...photo} alt={photo.alt} sizes="(min-width: 768px) 45vw, 90vw" />)}</div>}
+      <OutreachVideos videos={content.videos} /><OutreachGallery items={[...content.outreachMoments.map(video => ({ kind: 'video' as const, video })), ...content.community.map((photo, index) => ({ kind: 'photo' as const, id: `photo-${index}`, photo }))]} />
       {content.testimonial && <div className="testimonial-layout story-testimonial" aria-labelledby="testimonial-title"><div><p className="eyebrow">A voice from our community</p><h3 id="testimonial-title">Behind every outreach,<br />a personal story.</h3><p className="section-intro">Hear from Tobi, in her own words, about her experience with MamaMeds.</p><a className="text-link" href="#volunteer">Be part of our next chapter</a></div><VideoCard video={content.testimonial} /></div>}
     </div></section>
 
@@ -54,7 +67,7 @@ export function LandingPage() {
       <p className="eyebrow">Be part of our mission</p><h2 id="involved-title">Get involved.</h2>
       <div className="involvement-grid">
         <section id="volunteer" className="involvement-card" aria-labelledby="volunteer-title"><Users size={28} aria-hidden="true" /><h3 id="volunteer-title">Volunteer with us</h3><p>Help prepare outreach materials, support event logistics, and assist with community engagement.</p>{content.volunteerFormUrl && <a className="primary-link" href={content.volunteerFormUrl}>Apply to volunteer <Users size={18} aria-hidden="true" /></a>}</section>
-        <section id="donate" className="involvement-card giving-card" aria-labelledby="donate-title"><Heart size={28} aria-hidden="true" /><h3 id="donate-title">Help us reach more mothers.</h3><p>Your support helps provide essential antenatal medications and maternal health resources to women across Nigeria.</p><a className="primary-link" href={`mailto:${site.email}`}>Email us to give <Mail size={18} aria-hidden="true" /></a></section>
+        <section id="donate" className="involvement-card giving-card" aria-labelledby="donate-title"><Heart size={28} aria-hidden="true" /><h3 id="donate-title">Help us reach more mothers.</h3><p>Your support helps provide essential antenatal medications and maternal health resources to women across Nigeria.</p><p className="giving-status">MamaMeds is a 501(c)(3) nonprofit. Donations are tax-deductible to the extent allowed by law.</p><a className="primary-link" href={`mailto:${site.email}`}>Email us to give <Mail size={18} aria-hidden="true" /></a></section>
       </div>
     </section>
   </>;
