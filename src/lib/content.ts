@@ -90,5 +90,5 @@ export const content: {
     "originalSrc": "https://res.cloudinary.com/bmcmy4kk/video/upload/v1791170846/IMG_4599.mp4",
     "poster": "https://res.cloudinary.com/bmcmy4kk/video/upload/c_limit,w_480,q_auto,f_webp,so_1/v1791170846/IMG_4599.webp"
 },
-  volunteerFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLScmDq-eybY_GLbMxEb-vo0s-vB89dE6RDLrE-yIN_NvCmMNKQ/viewform',
+  volunteerFormUrl: 'https://forms.gle/mC6JL1Rn1bkPRVxu7',
 };

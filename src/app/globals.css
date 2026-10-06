@@ -214,3 +214,46 @@ h3 { font-size: 19px; line-height: 1.4; font-weight: 700; margin: 0 0 12px; }
 .community-section > .page-container > .reel-grid .reel-card { margin-inline: auto; }
 @media (max-width: 1023px) { .testimonial-layout { gap: 40px; grid-template-columns: 1fr minmax(240px, 320px); } }
 @media (max-width: 639px) { .testimonial-layout { grid-template-columns: 1fr; gap: 28px; } .testimonial-layout > .reel-card { margin-inline: auto; max-width: 320px; } }
+
+/* Founder-approved direction, roadmap, and involvement. */
+.hero-text { display: block; }
+.hero-text .hero-copy { max-width: 900px; }
+.hero-text h1 { max-width: 850px; font-size: clamp(36px, 5vw, 68px); }
+.hero-text .mission { max-width: 67ch; }
+.direction-section { border-top: 1px solid #e2edf3; }
+.impact-pair { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 660px; margin: 0 0 30px; }
+.roadmap { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.roadmap li { position: relative; border-top: 2px solid #c3d6e2; padding: 28px 24px 0 0; }
+.roadmap li::before { content: ''; position: absolute; width: 12px; height: 12px; top: -7px; left: 0; background: #0c3c60; border: 3px solid #f0f7fb; border-radius: 50%; }
+.roadmap .roadmap-current::before { background: #ad3300; }
+.roadmap p { margin: 0; font-size: 14px; color: #53616d; line-height: 1.7; }
+.roadmap .roadmap-label { font-size: 12px; font-weight: 700; color: #ad3300; margin-bottom: 12px; }
+.roadmap h3 { font-size: 23px; margin-bottom: 6px; }
+#stories { background: white; }
+.story-testimonial { margin: 64px auto 0; padding-top: 64px; border-top: 1px solid #d6e3ec; }
+.story-testimonial h3 { font-size: clamp(26px, 3vw, 36px); }
+.founder-text { max-width: 800px; }
+.founder-text .editorial-copy > p { font-size: 16px; }
+.involvement-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; margin-top: 32px; }
+.involvement-card { border: 1px solid #d6e3ec; border-radius: 24px; padding: 36px; color: #0c3c60; display: flex; flex-direction: column; align-items: flex-start; }
+.involvement-card h3 { margin: 20px 0 12px; font-size: 25px; }
+.involvement-card p { font-size: 15px; line-height: 1.8; color: #53616d; margin: 0 0 28px; }
+.involvement-card .primary-link { margin-top: auto; }
+.giving-card { background: #0c3c60; color: white; }
+.giving-card h3 { color: white; }
+.giving-card p { color: #d4e5ef; }
+.giving-card a:focus-visible { outline-color: white; }
+.involved-contact { margin-top: 44px; padding-top: 36px; border-top: 1px solid #e2edf3; }
+.contact-links { display: flex; flex-direction: column; align-items: flex-start; }
+.contact-links a { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; color: #0c3c60; font-size: 14px; text-decoration: none; }
+.contact-links a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.contact-links svg { flex-shrink: 0; }
+.contact-links span { overflow-wrap: anywhere; }
+@media (max-width: 767px) {
+  .roadmap { grid-template-columns: 1fr; }
+  .roadmap li { border-top: 0; border-left: 2px solid #c3d6e2; padding: 0 0 32px 26px; }
+  .roadmap li:last-child { padding-bottom: 0; }
+  .roadmap li::before { top: 4px; left: -7px; }
+  .involvement-grid { grid-template-columns: 1fr; }
+  .involvement-card { padding: 28px; }
+}

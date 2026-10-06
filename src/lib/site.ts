@@ -8,5 +8,7 @@ export const site = {
   url: normalizeSiteUrl(process.env.NEXT_PUBLIC_SITE_URL, process.env.NODE_ENV === 'production'),
   logo: '/images/mamameds-logo.webp',
   socialImage: '/images/mamameds-social-phase2.jpg',
+  email: 'mamamedsng@gmail.com',
+  linkedin: { url: 'https://www.linkedin.com/company/145257813/' },
   instagram: { handle: '@mamamedsng', url: 'https://www.instagram.com/mamamedsng/' },
 } as const;

@@ -52,9 +52,9 @@ tests/                    URL normalization regression tests
 
 ## Design and assets
 
-White canvas, ocean blue `#0C3C60`, orange `#F15A24`, and ice blue `#F0F7FB`. Headings use Plus Jakarta Sans; body text uses Inter. Small orange text uses darker `#AD3300` for contrast. Navigation points to real page sections; donation processing remains disabled with a visible explanation. Lucide supplies interface icons, while Simple Icons supplies the actual Instagram brand icon. Decorative icons are hidden from screen readers.
+White canvas, ocean blue `#0C3C60`, orange `#F15A24`, and ice blue `#F0F7FB`. Headings use Plus Jakarta Sans; body text uses Inter. Small orange text uses darker `#AD3300` for contrast. Navigation points to real page sections; donations use an email link; no payment processing is integrated. Lucide supplies interface icons, while Simple Icons supplies the actual Instagram brand icon. Decorative icons are hidden from screen readers.
 
-The Phase 2 draft uses branded text panels until real hero/founder photography is supplied. The approved impact figures are 250+ women reached and 2 community outreaches. The footer and Contact section link to @mamamedsng. No contact details or volunteer URL are fabricated. The favicon uses the supplied logo emblem; the current social-sharing card contains branding and the mission headline only. Old generated media are retained as historical assets but are not referenced by the current page or metadata.
+The page uses text-led hero and founder sections until approved real photography is supplied. The approved impact figures are 250+ women reached and 2 community outreaches. The footer and Contact section include email, Instagram, and LinkedIn. No contact details or volunteer URL are fabricated. The favicon uses the supplied logo emblem; the current social-sharing card contains branding and the mission headline only. Old generated media are retained as historical assets but are not referenced by the current page or metadata.
 
 ## Deployment to Vercel
 
@@ -117,11 +117,11 @@ At implementation, `npm audit --omit=dev` reported no production vulnerabilities
 
 ## Phase 2 content handoff
 
-The full-page draft is implemented locally. The seven supplied Cloudinary clips are connected. The temporary Google Form is connected. Real hero/founder photos and final founder-copy approval are still needed before launch. No CMS or payment integration is included. The current social card uses branding only; replace it with a branded card featuring approved real photography when supplied. Previous generated images are not referenced by the draft.
+The full-page draft is implemented locally. The seven supplied Cloudinary clips are connected. The approved Join MamaMeds Google Form is connected. The October 6 founder biography is implemented; real hero/founder photos remain pending. No CMS or payment integration is included. The current social card uses branding only; replace it with a branded card featuring approved real photography when supplied. Previous generated images are not referenced by the draft.
 
 Edit `src/lib/content.ts`:
 
-- `hero` and `founder`: approved real photos with `src`, descriptive `alt`, and intrinsic `width`/`height`. Use local `/images/...` paths or direct `https://res.cloudinary.com/...` image URLs. Null displays a branded text panel instead.
+- `hero` and `founder`: approved real photos with `src`, descriptive `alt`, and intrinsic `width`/`height`. Use local `/images/...` paths or direct `https://res.cloudinary.com/...` image URLs. Null uses a text-only layout.
 - `community`: optional real photos with the same shape. An empty array hides the photo gallery.
 - `videos`: the two featured outreach montages; `outreachMoments`: four short clips behind an expandable control; `testimonial`: Tobi’s interview beside the Volunteer section. Each entry contains a unique `id`, accurate `title` and `description`, a direct HTTPS video `src`, and preferably a `poster` URL. Use Cloudinary delivery URLs rather than management-console or sharing-page URLs. Use broadly supported MP4/H.264/AAC files prepared at an appropriate mobile bitrate; Cloudinary hosting alone does not make a large original lightweight.
 - For spoken videos, supply accurate WebVTT `captions` (`src`, `language`, `label`) and a `transcript`. Ensure the video/caption host permits cross-origin access. Do not publish speech-based videos without reviewing captions.
@@ -133,4 +133,4 @@ Delivery URLs were measured against the originals. Six clips use Cloudinary `c_l
 
 The first montage documents the first Lagos outreach; IMG_4593 is the second-outreach montage; IMG_4599 is Tobi’s interview, with captions already burned into the supplied video. Other clips are brief attendee/bag scenes. Source framing, embedded text, audio, and watermarks remain intact. Separate accurate WebVTT captions/transcripts can be added; do not claim an audio transcription has been independently verified.
 
-The mission, programme descriptions, About section, founder narrative and quotation, and donation copy follow the founder-provided reference shared on October 5. Final founder-copy approval is still pending. Registration and 501(c)(3) claims from that reference are omitted until confirmed. The draft does not claim registration status, invent contact information, or quote unverified statements as her words. Header Donate links to the donation section; payment remains disabled. The mobile menu supports Escape and closes on section selection.
+The October 6 founder update sets the order: Hero, Where we’re headed (including About), Impact & roadmap, Stories, About the founder, Get involved, Footer. Future roadmap milestones are explicitly labelled as targets or plans. The supplied Kasite Ugo-Beke biography is reproduced verbatim. Volunteers help prepare outreach materials, support event logistics, and assist with community engagement. Email-based giving replaces the disabled donation control; no bank details, payment platform, tax-deductibility, or registration claims are published. The mobile menu supports Escape and closes on section selection.

@@ -1,4 +1,4 @@
-import { SiInstagram } from '@icons-pack/react-simple-icons';
+import { ContactLinks } from './ContactLinks';
 import { site } from '@/lib/site';
 
 export function Footer() {
@@ -11,10 +11,7 @@ export function Footer() {
         </div>
         <div className="footer-details">
           <p className="footer-location">Nigeria <span aria-hidden="true">/</span> United States</p>
-          <a className="instagram-link" href={site.instagram.url} aria-label={`MamaMeds on Instagram (${site.instagram.handle})`}>
-            <SiInstagram size={18} aria-hidden="true" focusable="false" />
-            <span>{site.instagram.handle}</span>
-          </a>
+          <ContactLinks />
         </div>
       </div>
     </footer>
