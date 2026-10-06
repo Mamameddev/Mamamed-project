@@ -23,7 +23,8 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${inter.variable} ${jakarta.variable}`}>
-      <body><a className="skip-link" href="#main-content">Skip to content</a>{children}</body>
+      {/* Browser extensions can add body attributes before hydration. Keep this exception local. */}
+      <body suppressHydrationWarning><a className="skip-link" href="#main-content">Skip to content</a>{children}</body>
     </html>
   );
 }

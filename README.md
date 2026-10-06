@@ -54,7 +54,7 @@ tests/                    URL normalization regression tests
 
 White canvas, ocean blue `#0C3C60`, orange `#F15A24`, and ice blue `#F0F7FB`. Headings use Plus Jakarta Sans; body text uses Inter. Small orange text uses darker `#AD3300` for contrast. Navigation points to real page sections; donations use an email link; no payment processing is integrated. Lucide supplies interface icons, while Simple Icons supplies the actual Instagram brand icon. Decorative icons are hidden from screen readers.
 
-The page uses text-led hero and founder sections until approved real photography is supplied. The approved impact figures are 250+ women reached and 2 community outreaches. The footer and Contact section include email, Instagram, and LinkedIn. No contact details or volunteer URL are fabricated. The favicon uses the supplied logo emblem; the current social-sharing card contains branding and the mission headline only. Old generated media are retained as historical assets but are not referenced by the current page or metadata.
+The hero remains text-led while photography is pending. The founder section uses Kasite’s supplied portrait, optimized as a local WebP. The approved impact figures are 250+ women reached and 2 community outreaches. The footer and Contact section include email, Instagram, and LinkedIn. No contact details or volunteer URL are fabricated. The favicon uses the supplied logo emblem; the current social-sharing card contains branding and the mission headline only. Old generated media are retained as historical assets but are not referenced by the current page or metadata.
 
 ## Deployment to Vercel
 
@@ -117,7 +117,7 @@ At implementation, `npm audit --omit=dev` reported no production vulnerabilities
 
 ## Phase 2 content handoff
 
-The full-page draft is implemented locally. The seven supplied Cloudinary clips are connected. The approved Join MamaMeds Google Form is connected. The October 6 founder biography is implemented; real hero/founder photos remain pending. No CMS or payment integration is included. The current social card uses branding only; replace it with a branded card featuring approved real photography when supplied. Previous generated images are not referenced by the draft.
+The full-page draft is implemented locally. The seven supplied Cloudinary clips are connected. The approved Join MamaMeds Google Form is connected. The October 6 founder biography is implemented; Kasite’s supplied portrait is connected; real hero photography remains pending. No CMS or payment integration is included. The current social card uses branding only; replace it with a branded card featuring approved real photography when supplied. Previous generated images are not referenced by the draft.
 
 Edit `src/lib/content.ts`:
 

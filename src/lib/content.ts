@@ -21,7 +21,7 @@ export const content: {
   volunteerFormUrl: string | null;
 } = {
   hero: null,
-  founder: null,
+  founder: { src: '/images/kasite-ugo-beke.webp', alt: 'Kasite Ugo-Beke, founder of MamaMeds', width: 591, height: 887 },
   community: [],
   videos: [
     {
