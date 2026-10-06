@@ -2,7 +2,6 @@ import Image from 'next/image';
 import { Heart, Mail, Users } from 'lucide-react';
 import { content } from '@/lib/content';
 import { site } from '@/lib/site';
-import { ContactLinks } from '@/components/layout/ContactLinks';
 import { OutreachVideos, MoreOutreachVideos, VideoCard } from '@/components/media/OutreachVideos';
 
 const milestones = [
@@ -57,7 +56,6 @@ export function LandingPage() {
         <section id="volunteer" className="involvement-card" aria-labelledby="volunteer-title"><Users size={28} aria-hidden="true" /><h3 id="volunteer-title">Volunteer with us</h3><p>Help prepare outreach materials, support event logistics, and assist with community engagement.</p>{content.volunteerFormUrl && <a className="primary-link" href={content.volunteerFormUrl}>Apply to volunteer <Users size={18} aria-hidden="true" /></a>}</section>
         <section id="donate" className="involvement-card giving-card" aria-labelledby="donate-title"><Heart size={28} aria-hidden="true" /><h3 id="donate-title">Help us reach more mothers.</h3><p>Your support helps provide essential antenatal medications and maternal health resources to women across Nigeria.</p><a className="primary-link" href={`mailto:${site.email}`}>Email us to give <Mail size={18} aria-hidden="true" /></a></section>
       </div>
-      {/* <section id="contact" className="contact-section involved-contact" aria-labelledby="contact-title"><div><h3 id="contact-title">Let’s stay connected.</h3><p>For questions about MamaMeds, volunteering, or supporting our work, get in touch.</p></div><ContactLinks /></section> */}
     </section>
   </>;
 }

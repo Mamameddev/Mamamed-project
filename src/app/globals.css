@@ -1242,3 +1242,15 @@ h3 {
     padding: 28px;
   }
 }
+
+/* A single contact footer, with organization details beneath. */
+#contact.site-footer { scroll-margin-top: 24px; background: #f0f7fb; }
+.site-footer .footer-inner { align-items: flex-start; padding-block: 48px 36px; gap: 32px; }
+.footer-contact-copy { max-width: 500px; }
+.footer-contact-copy h2 { font-size: clamp(26px, 3vw, 34px); margin-bottom: 16px; }
+.site-footer .footer-contact-copy p { font-size: 14px; line-height: 1.8; }
+.footer-meta { display: flex; justify-content: space-between; gap: 12px 24px; border-top: 1px solid #d6e3ec; padding-block: 22px; }
+@media (max-width: 767px) {
+  .site-footer .footer-inner { flex-direction: column; padding-block: 36px 28px; gap: 22px; }
+  .footer-meta { flex-direction: column; gap: 6px; }
+}
