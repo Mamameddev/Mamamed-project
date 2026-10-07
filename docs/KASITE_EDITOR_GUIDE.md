@@ -1,6 +1,6 @@
 # Editing the MamaMeds website
 
-Open the MamaMeds Studio link supplied after setup and sign in with your own Sanity account. Choose **Website Content**.
+Open [MamaMeds Studio](https://mamamedsng.sanity.studio/) and sign in with your own Sanity account. Choose **Website Content**.
 
 1. **Edit:** choose the relevant tab and update the text or images. Changes save as a draft.
 2. **Preview:** open Presentation to see your draft. If it hasn't refreshed, use **Refresh preview** in the website's draft banner.
