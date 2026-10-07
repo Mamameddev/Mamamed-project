@@ -1268,7 +1268,8 @@ h3 {
 .gallery-buttons { display: flex; gap: 10px; flex-shrink: 0; }
 .gallery-buttons button { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid #9bb7c8; border-radius: 50%; background: white; color: #0c3c60; cursor: pointer; }
 .gallery-buttons button:disabled { opacity: .4; cursor: default; }
-.gallery-track { position: relative; display: flex; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 6px 0 20px; scrollbar-width: thin; scrollbar-color: #779bae #f0f7fb; }
+.gallery-track { position: relative; display: flex; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 6px 0 20px; scrollbar-width: none; }
+.gallery-track::-webkit-scrollbar { display: none; }
 .gallery-track:focus-visible { outline: 3px solid #0c3c60; outline-offset: 5px; }
 .gallery-track > .reel-card { flex: 0 0 min(360px, 85%); width: min(360px, 85%); max-width: 360px; margin: 0; scroll-snap-align: start; }
 .gallery-photo .reel-frame { display: grid; place-items: center; }
