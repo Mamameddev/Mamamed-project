@@ -1,0 +1,7 @@
+# Credentials are configured in Vercel, never uploaded with source.
+.env*
+studio/.env*
+# Local Studio build is deployed separately to Sanity hosting.
+studio/dist/
+studio/.sanity/
+.sanity/

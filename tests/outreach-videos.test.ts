@@ -39,3 +39,14 @@ test('swipeable gallery renders posters but no initial video sources', () => {
   assert(!html.includes('<video'));
   assert(!html.includes('outreach.mp4'));
 });
+
+test('mixed gallery includes uploaded photos with alt text and optional captions', () => {
+  const html = renderToStaticMarkup(createElement(OutreachGallery, { items: [
+    { kind: 'photo', id: 'photo', photo: { src: '/images/kasite-ugo-beke.webp', width: 591, height: 887, alt: 'Kasite Ugo-Beke' }, caption: 'Meet our founder' },
+    { kind: 'video', video: videos[0] },
+  ] }));
+  assert(html.includes('alt="Kasite Ugo-Beke"'));
+  assert(html.includes('Meet our founder'));
+  assert(html.includes('1 of 2'));
+  assert(!html.includes('<video'));
+});

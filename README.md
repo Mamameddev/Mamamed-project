@@ -117,7 +117,7 @@ At implementation, `npm audit --omit=dev` reported no production vulnerabilities
 
 ## Phase 2 content handoff
 
-The full-page draft is implemented locally. The seven supplied Cloudinary clips are connected. The approved Join MamaMeds Google Form is connected. The October 6 founder biography is implemented; Kasite’s supplied portrait is connected; the approved outreach hero is connected. Work-card and gallery photos remain pending. No CMS or payment integration is included. The current social card uses branding only; replace it with a branded card featuring approved real photography when supplied. Previous generated images are not referenced by the draft.
+The full-page draft is implemented locally. The seven supplied Cloudinary clips are connected. The approved Join MamaMeds Google Form is connected. The October 6 founder biography is implemented; Kasite’s supplied portrait is connected; the approved outreach hero is connected. Work-card and gallery photos remain pending. Sanity integration is available on the CMS branch and remains disabled until import and verification; no payment integration is included. The current social card uses branding only; replace it with a branded card featuring approved real photography when supplied. Previous generated images are not referenced by the draft.
 
 Edit `src/lib/content.ts`:
 
@@ -137,3 +137,7 @@ Delivery URLs were measured against the originals. Six clips use Cloudinary `c_l
 The first montage documents the first Lagos outreach; IMG_4593 is the second-outreach montage; IMG_4599 is Tobi’s interview, with captions already burned into the supplied video. Other clips are brief attendee/bag scenes. Source framing, embedded text, audio, and watermarks remain intact. Separate accurate WebVTT captions/transcripts can be added; do not claim an audio transcription has been independently verified.
 
 The October 6 founder update sets the order: Hero, Where we’re headed (including About), Our Work, Impact & roadmap, Stories, About the founder, Get involved, Footer. Future roadmap milestones are explicitly labelled as targets or plans. The supplied Kasite Ugo-Beke biography is reproduced verbatim. Volunteers help prepare outreach materials, support event logistics, and assist with community engagement. Email-based giving replaces the disabled donation control; no bank details or payment platform are published. The founder-confirmed 501(c)(3) status and supplied tax-deductibility wording appear in About, Donate, and the footer. The mobile menu supports Escape and closes on section selection.
+
+## Sanity editing dashboard
+
+The optional CMS is maintained in `studio/`. See [CMS setup and recovery](docs/CMS_SETUP.md) for import, local preview, environment settings, and rollout. See [Kasite's editing guide](docs/KASITE_EDITOR_GUIDE.md) for photo uploads and Edit → Preview → Publish. Keep `SANITY_ENABLED=false` until the content is imported and verified.

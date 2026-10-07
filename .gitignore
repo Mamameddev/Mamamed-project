@@ -9,3 +9,8 @@ out/
 coverage/
 playwright-report/
 test-results/
+!studio/.env.example
+studio/dist/
+.sanity/
+studio/.sanity/
+*.tar.gz

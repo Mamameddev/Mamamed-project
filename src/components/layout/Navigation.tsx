@@ -3,12 +3,10 @@
 import { useState } from 'react';
 import { Heart, Menu, X } from 'lucide-react';
 
-const links = [
-  ['About MamaMeds', '#about'], ['Volunteer', '#volunteer'],
-  ['About the Founder', '#founder'], ['Contact Us', '#contact'], ['Donate', '#donate'],
-];
+const anchors = ['#about', '#volunteer', '#founder', '#contact', '#donate'];
 
-export function Navigation() {
+export function Navigation({ labels }: { labels: string[] }) {
+  const links = labels.map((label, index) => [label, anchors[index]]);
   const [open, setOpen] = useState(false);
   return (
     <div className="navigation" onKeyDown={(event) => {

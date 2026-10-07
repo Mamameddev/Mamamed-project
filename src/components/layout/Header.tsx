@@ -1,16 +1,16 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Navigation } from './Navigation';
-import { site } from '@/lib/site';
+import type { Website } from '@/lib/cms/model';
 
-export function Header() {
+export function Header({ website }: { website: Website }) {
   return (
     <header className="site-header">
       <div className="page-container header-inner">
         <Link href="/" aria-label="MamaMeds home" className="logo-link">
-          <Image src={site.logo} alt="MamaMeds" width={744} height={458} className="brand-logo" priority />
+          <Image {...website.logoPhoto} alt={website.logoPhoto.alt} className="brand-logo" preload />
         </Link>
-        <Navigation />
+        <Navigation labels={[website.navAbout, website.navVolunteer, website.navFounder, website.navContact, website.navDonate]} />
       </div>
     </header>
   );

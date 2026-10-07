@@ -1,0 +1,11 @@
+{
+  "name": "mamameds-studio",
+  "private": true,
+  "version": "0.1.0",
+  "dependencies": {
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "sanity": "^6.17.0",
+    "styled-components": "^6.5.3"
+  }
+}

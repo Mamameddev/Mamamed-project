@@ -95,7 +95,7 @@ export function OutreachVideos({ videos }: { videos: OutreachVideo[] }) {
   return <div className="reel-grid" data-video-gallery>{videos.map(video => <VideoCard key={video.id} video={video} />)}</div>;
 }
 
-export function OutreachGallery({ items }: { items: GalleryItem[] }) {
+export function OutreachGallery({ items, title = 'More outreach moments', hint = 'Swipe or use the controls to explore.' }: { items: GalleryItem[]; title?: string; hint?: string }) {
   const track = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState(0);
   const [end, setEnd] = useState(false);
@@ -121,7 +121,7 @@ export function OutreachGallery({ items }: { items: GalleryItem[] }) {
     element.scrollBy({ left: direction * (width + 24), behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
   };
   return <div className="outreach-gallery" role="region" aria-labelledby="gallery-title">
-    <div className="gallery-heading"><div><h3 id="gallery-title">More outreach moments</h3><p>Swipe or use the controls to explore.</p></div><div className="gallery-buttons">
+    <div className="gallery-heading"><div><h3 id="gallery-title">{title}</h3><p>{hint}</p></div><div className="gallery-buttons">
       <button type="button" onClick={() => move(-1)} disabled={position === 0} aria-label="Previous outreach moment" aria-controls="outreach-gallery-track"><ChevronLeft size={22} aria-hidden="true" /></button>
       <button type="button" onClick={() => move(1)} disabled={end} aria-label="Next outreach moment" aria-controls="outreach-gallery-track"><ChevronRight size={22} aria-hidden="true" /></button>
     </div></div>
