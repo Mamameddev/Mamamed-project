@@ -79,11 +79,14 @@ export function MediaGrid({ items, className = 'media-grid', showTitles = false 
       {open && <div className="viewer-body">
         <button type="button" className="viewer-close" onClick={close} aria-label="Close"><X size={22} aria-hidden="true" /></button>
         {open.kind === 'photo'
-          ? <Image src={open.photo.src} alt={open.photo.alt} width={open.photo.width} height={open.photo.height} sizes="92vw" className="viewer-media" />
+          // Eager: Safari may never start a lazy image inside a modal dialog.
+          ? <Image src={open.photo.src} alt={open.photo.alt} width={open.photo.width} height={open.photo.height} sizes="92vw" className="viewer-media" loading="eager" />
           : failed
             ? <p className="viewer-error">This video couldn’t load. <a href={open.video.fullSrc ?? open.video.src}>Open the video file</a></p>
-            : <video ref={viewerVideo} className="viewer-media" controls playsInline preload="auto" poster={open.video.poster} src={open.video.fullSrc ?? open.video.src}
-              crossOrigin={open.video.captions ? 'anonymous' : undefined} onError={() => setFailed(true)}>
+            : <video key={open.video.id} ref={viewerVideo} className="viewer-media" controls playsInline preload="auto" poster={open.video.poster} src={open.video.fullSrc ?? open.video.src}
+              crossOrigin={open.video.captions ? 'anonymous' : undefined} onError={() => setFailed(true)}
+              // Clips of a few seconds loop like a reel instead of stopping almost immediately.
+              onLoadedMetadata={event => { event.currentTarget.loop = event.currentTarget.duration < 15; }}>
               {open.video.captions && <track kind="captions" src={open.video.captions.src} srcLang={open.video.captions.language} label={open.video.captions.label} default />}
             </video>}
       </div>}
