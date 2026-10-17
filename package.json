@@ -13,7 +13,8 @@
     "cms:build": "cd studio && sanity build",
     "cms:deploy": "cd studio && sanity deploy",
     "cms:import": "tsx scripts/import-content.ts",
-    "cms:verify": "tsx scripts/verify-content.ts"
+    "cms:verify": "tsx scripts/verify-content.ts",
+    "cms:migrate": "tsx scripts/migrate-simplify-2026-10.ts"
   },
   "engines": {
     "node": ">=22.13.0 <25"

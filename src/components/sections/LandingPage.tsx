@@ -2,10 +2,10 @@ import Image from 'next/image';
 import { Heart, Mail, Users, Pill, BookOpen } from 'lucide-react';
 import type { Website } from '@/lib/cms/model';
 
-import { OutreachVideos, OutreachGallery, VideoCard } from '@/components/media/OutreachVideos';
+import { MediaGrid } from '@/components/media/Gallery';
 
 export function LandingPage({ website }: { website: Website }) {
-  const content = { hero: website.heroPhoto, founder: website.founderPhoto, videos: website.videos, testimonial: website.testimonial, workPhotos: website.workPhotos, volunteerFormUrl: website.volunteerFormUrl };
+  const content = { hero: website.heroPhoto, founder: website.founderPhoto, testimonial: website.testimonial, workPhotos: website.workPhotos, volunteerFormUrl: website.volunteerFormUrl };
   const milestones = website.milestones;
   const work = [
     { id: 'medications', icon: Pill, title: website.medicationsTitle, text: website.medicationsBody },
@@ -24,7 +24,7 @@ export function LandingPage({ website }: { website: Website }) {
     </section>
 
     <section id="about" className="direction-section section-space" aria-labelledby="direction-title"><div className="page-container editorial-grid">
-      <div><p className="eyebrow">{website.directionEyebrow}</p><h2 id="direction-title">{website.directionTitle}</h2></div>
+      <div><h2 id="direction-title">{website.directionTitle}</h2></div>
       <div className="editorial-copy"><p>{website.directionStatus}</p><p>{website.directionBody}</p><p>{website.directionBelief}</p></div>
     </div></section>
 
@@ -38,15 +38,18 @@ export function LandingPage({ website }: { website: Website }) {
 
     <section id="impact" className="impact section-space" aria-labelledby="impact-title"><div className="page-container">
       <p className="eyebrow">{website.impactEyebrow}</p><h2 id="impact-title">{website.impactTitle}</h2>
-      <dl className="impact-grid impact-pair"><div><dt>{website.womenLabel}</dt><dd>{website.womenReached}<span>{website.womenReachedSuffix}</span></dd></div><div><dt>{website.outreachesLabel}</dt><dd>{website.outreachCount}</dd></div></dl>
-      <ol className="roadmap" aria-label="Current impact and future targets">{milestones.map(step => <li key={step.label} className={step.current ? 'roadmap-current' : undefined}><p className="roadmap-label">{step.label}</p><h3>{step.title}</h3><p>{step.text}</p></li>)}</ol>
+      <ol className="roadmap" aria-label="Current impact and future targets">{milestones.map(step => <li key={step.label} className={step.current ? 'roadmap-current' : undefined}><p className="roadmap-label">{step.label}</p><h3>{step.title}</h3>{step.text && <p>{step.text}</p>}</li>)}</ol>
     </div></section>
 
-    <section id="stories" className="community-section section-space" aria-labelledby="stories-title"><div className="page-container">
-      <p className="eyebrow">{website.storiesEyebrow}</p><h2 id="stories-title">{website.storiesTitle}</h2><p className="section-intro">{website.storiesIntro}</p>
-      <OutreachVideos videos={content.videos} /><OutreachGallery items={website.gallery} title={website.galleryTitle} hint={website.galleryHint} />
-      {content.testimonial && <div className="testimonial-layout story-testimonial" aria-labelledby="testimonial-title"><div><p className="eyebrow">{website.testimonialEyebrow}</p><h3 id="testimonial-title">{website.testimonialTitle}</h3><p className="section-intro">{website.testimonialIntro}</p><a className="text-link" href="#volunteer">{website.testimonialButton}</a></div><VideoCard video={content.testimonial} /></div>}
-    </div></section>
+    {content.testimonial && <section id="her-words" className="her-words section-space" aria-labelledby="her-words-title"><div className="page-container testimonial-layout">
+      <div><p className="eyebrow" id="her-words-title">{website.testimonialEyebrow}</p><p className="section-intro">{website.testimonialIntro}</p></div>
+      <MediaGrid items={[{ kind: 'video', video: content.testimonial }]} className="media-grid media-single" showTitles />
+    </div></section>}
+
+    {website.gallery.length > 0 && <section id="gallery" className="gallery-section section-space" aria-labelledby="gallery-title"><div className="page-container">
+      <h2 id="gallery-title">{website.galleryTitle}</h2><p className="section-intro">{website.galleryIntro}</p>
+      <MediaGrid items={website.gallery} />
+    </div></section>}
 
     <section id="founder" className="founder-section section-space" aria-labelledby="founder-title"><div className={`page-container ${content.founder ? 'editorial-grid' : 'founder-text'}`}>
       {content.founder && <Image {...content.founder} alt={content.founder.alt} sizes="(min-width: 1024px) 40vw, 90vw" className="founder-photo" />}

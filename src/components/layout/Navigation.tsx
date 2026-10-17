@@ -3,10 +3,9 @@
 import { useState } from 'react';
 import { Heart, Menu, X } from 'lucide-react';
 
-const anchors = ['#about', '#volunteer', '#founder', '#contact', '#donate'];
+export type NavLink = { label: string; href: string };
 
-export function Navigation({ labels }: { labels: string[] }) {
-  const links = labels.map((label, index) => [label, anchors[index]]);
+export function Navigation({ links, donate }: { links: NavLink[]; donate: NavLink }) {
   const [open, setOpen] = useState(false);
   return (
     <div className="navigation" onKeyDown={(event) => {
@@ -20,9 +19,8 @@ export function Navigation({ labels }: { labels: string[] }) {
         <span>{open ? 'Close' : 'Menu'}</span>
       </button>
       <nav id="main-navigation" aria-label="Main navigation" className={`nav-links${open ? ' is-open' : ''}`}>
-        {links.map(([label, href]) => <a key={href} href={href} className={href === '#donate' ? 'nav-donate' : undefined} onClick={() => setOpen(false)}>
-          {label}{href === '#donate' && <Heart size={17} aria-hidden="true" />}
-        </a>)}
+        {links.map(({ label, href }) => <a key={href} href={href} onClick={() => setOpen(false)}>{label}</a>)}
+        <a href={donate.href} className="nav-donate" onClick={() => setOpen(false)}>{donate.label}<Heart size={17} aria-hidden="true" /></a>
       </nav>
     </div>
   );

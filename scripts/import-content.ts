@@ -9,7 +9,7 @@ async function main() {
   loadEnvConfig(process.cwd());
   const { defaultWebsite } = await import('../src/lib/cms/defaults');
   if (process.argv.includes('--dry-run')) {
-    console.log(`Validated local snapshot: ${Object.keys(defaultWebsite).length} fields, ${defaultWebsite.videos.length + defaultWebsite.gallery.length + (defaultWebsite.testimonial ? 1 : 0)} videos. No remote writes.`);
+    console.log(`Validated local snapshot: ${Object.keys(defaultWebsite).length} fields, ${defaultWebsite.gallery.length} gallery items, ${defaultWebsite.testimonial ? 1 : 0} personal story. No remote writes.`);
     return;
   }
   const { SANITY_PROJECT_ID: projectId, SANITY_DATASET: dataset, SANITY_IMPORT_TOKEN: token } = process.env;
@@ -18,17 +18,22 @@ async function main() {
   const exists = () => client.fetch<number>('count(*[_id in $ids])', { ids: [WEBSITE_ID, `drafts.${WEBSITE_ID}`] });
   if (await exists()) { console.log('Website content already exists (published or draft). Nothing changed.'); return; }
   const document: Record<string, unknown> = { ...defaultWebsite, _id: WEBSITE_ID, _type: 'websiteContent' };
-  for (const key of ['heroPhoto', 'founderPhoto', 'logoPhoto', 'socialPhoto'] as const) {
-    const photo = defaultWebsite[key];
-    if (!photo) continue;
+  const upload = async (photo: { src: string; alt: string }) => {
     const bytes = photo.src.startsWith('/images/') ? await readFile(resolve('public', photo.src.slice(1))) : await fetch(photo.src).then(async response => { if (!response.ok) throw new Error('Could not download approved image'); return Buffer.from(await response.arrayBuffer()); });
     const asset = await client.assets.upload('image', bytes, { filename: photo.src.split('/').pop() });
-    document[key] = { _type: 'websitePhoto', asset: { _type: 'reference', _ref: asset._id }, alt: photo.alt };
+    return { _type: 'websitePhoto', asset: { _type: 'reference', _ref: asset._id }, alt: photo.alt };
+  };
+  for (const key of ['heroPhoto', 'founderPhoto', 'logoPhoto', 'socialPhoto'] as const) {
+    const photo = defaultWebsite[key];
+    if (photo) document[key] = await upload(photo);
   }
-  for (const key of ['videos', 'milestones'] as const) {
-    document[key] = defaultWebsite[key].map((value, index) => ({ ...value, _key: `${key}-${index}`, _type: key === 'milestones' ? 'milestone' : 'outreachVideo' }));
+  document.milestones = defaultWebsite.milestones.map((value, index) => ({ ...value, _key: `milestones-${index}`, _type: 'milestone' }));
+  document.gallery = [];
+  for (const [index, item] of defaultWebsite.gallery.entries()) {
+    (document.gallery as unknown[]).push(item.kind === 'video'
+      ? { ...item.video, _key: `gallery-${index}`, _type: 'outreachVideo' }
+      : { _key: item.id, _type: 'galleryPhoto', photo: await upload(item.photo) });
   }
-  document.gallery = defaultWebsite.gallery.map((item, index) => { if (item.kind !== 'video') throw new Error('Seed expects video gallery'); return { ...item.video, _key: `gallery-${index}`, _type: 'outreachVideo' }; });
   if (defaultWebsite.testimonial) document.testimonial = { ...defaultWebsite.testimonial, _type: 'outreachVideo' };
   if (await exists()) { console.log('Content was created during import. Existing content preserved.'); return; }
   await client.createIfNotExists(omitEmptyMedia(document) as { _id: string; _type: string });

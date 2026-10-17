@@ -4,26 +4,31 @@ import { defaultWebsite } from '../src/lib/cms/defaults';
 import { websiteSchema, cloudinaryVideo } from '../src/lib/cms/model';
 import { isWebsiteEvent } from '../src/lib/cms/webhook';
 
-test('migration snapshot retains approved content and seven videos', () => {
+test('snapshot retains approved content, the outreach videos and Tobi’s story', () => {
   const page = websiteSchema.parse(defaultWebsite);
   assert.equal(page.founderTitle, "Hi, I'm Kasite Ugo-Beke.");
-  assert.equal(page.womenReached, 250);
-  assert.equal(page.outreachCount, 2);
-  assert.equal(page.videos.length + page.gallery.length + (page.testimonial ? 1 : 0), 7);
+  assert.equal(page.directionTitle, 'About MamaMeds');
+  assert.deepEqual(page.gallery.slice(0, 2).map(item => item.kind === 'video' && item.video.id), ['first-outreach', 'second-outreach']);
+  assert.equal(page.testimonial?.title, 'Tobi’s story');
+  assert.equal(page.testimonial?.description, undefined);
+  assert.equal(page.milestones.find(step => step.title === 'Pilot launch')?.text, undefined);
   assert.equal(page.volunteerFormUrl, 'https://forms.gle/mC6JL1Rn1bkPRVxu7');
   assert.equal(page.founderBiography.length, 3);
 });
 
 test('rejects malformed public data rather than caching or rendering it', () => {
-  for (const patch of [{ womenReached: -1 }, { email: 'invalid' }, { volunteerFormUrl: 'javascript:alert(1)' }, { heroTitle: ' ' }, { seoTitle: '' }, { founderPhoto: { src: 'https://evil.test/image.jpg', width: 1, height: 1, alt: 'portrait' } }]) {
+  for (const patch of [{ milestones: [] }, { email: 'invalid' }, { volunteerFormUrl: 'javascript:alert(1)' }, { heroTitle: ' ' }, { seoTitle: '' }, { founderPhoto: { src: 'https://evil.test/image.jpg', width: 1, height: 1, alt: 'portrait' } }]) {
     assert.equal(websiteSchema.safeParse({ ...defaultWebsite, ...patch }).success, false);
   }
 });
 
 test('only accepts Cloudinary upload MP4 links and unique video ids', () => {
-  assert.equal(cloudinaryVideo.safeParse(defaultWebsite.videos[0].src).success, true);
+  const first = defaultWebsite.gallery[0];
+  assert(first.kind === 'video');
+  assert.equal(cloudinaryVideo.safeParse(first.video.src).success, true);
   for (const url of ['https://res.cloudinary.com.evil.test/a/video/upload/test.mp4', 'http://res.cloudinary.com/a/video/upload/test.mp4', 'https://res.cloudinary.com/a/image/upload/test.mp4']) assert.equal(cloudinaryVideo.safeParse(url).success, false);
-  assert.equal(websiteSchema.safeParse({ ...defaultWebsite, gallery: [{ kind: 'video', video: defaultWebsite.videos[0] }] }).success, false);
+  assert.equal(websiteSchema.safeParse({ ...defaultWebsite, gallery: [first, first] }).success, false);
+  assert.equal(websiteSchema.safeParse({ ...defaultWebsite, gallery: [{ kind: 'video', video: defaultWebsite.testimonial }] }).success, false);
 });
 
 test('webhook events only target the published singleton', () => {
@@ -32,7 +37,7 @@ test('webhook events only target the published singleton', () => {
 });
 
 test('photo gallery entries require descriptive alt text and dimensions', () => {
-  const photo = { kind: 'photo', id: 'community-photo', photo: defaultWebsite.founderPhoto, caption: 'A community moment' };
+  const photo = { kind: 'photo', id: 'community-photo', photo: defaultWebsite.founderPhoto };
   assert.equal(websiteSchema.safeParse({ ...defaultWebsite, gallery: [photo] }).success, true);
   assert.equal(websiteSchema.safeParse({ ...defaultWebsite, gallery: [{ ...photo, photo: { ...photo.photo, alt: '' } }] }).success, false);
 });
@@ -52,7 +57,6 @@ test('GROQ resolves uploaded images and preserves mixed gallery ordering', async
   assert.equal(page.gallery[1].kind, 'video');
   assert.equal(page.workPhotos.medications?.width, 600);
   assert.equal(page.workPhotos.education, null);
-  assert.equal(page.gallery[0].kind === 'photo' && page.gallery[0].caption, '');
 });
 
 test('Sanity import omits empty media without removing uploaded photos or edits', async () => {

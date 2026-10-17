@@ -29,19 +29,14 @@ export const copyFields = {
     "value": "Explore our work",
     "multiline": false
   },
-  "directionEyebrow": {
+  "directionTitle": {
     "group": "direction",
     "value": "About MamaMeds",
     "multiline": false
   },
-  "directionTitle": {
-    "group": "direction",
-    "value": "Where we’re headed.",
-    "multiline": false
-  },
   "directionBody": {
     "group": "direction",
-    "value": "Today, we deliver antenatal medications and education through community outreach. Next, we're building a model to help community health workers prevent postpartum hemorrhage, one of the leading causes of maternal death, starting with a pilot in 2027.",
+    "value": "Today, we deliver antenatal medications and education through community outreach. Next, we’re building a model to help community health workers prevent postpartum hemorrhage, one of the leading causes of maternal death, starting with a pilot in 2027.",
     "multiline": true
   },
   "directionBelief": {
@@ -59,49 +54,14 @@ export const copyFields = {
     "value": "Impact & roadmap",
     "multiline": false
   },
-  "womenLabel": {
-    "group": "impact",
-    "value": "Women reached",
-    "multiline": false
-  },
-  "outreachesLabel": {
-    "group": "impact",
-    "value": "Community outreaches",
-    "multiline": false
-  },
-  "storiesEyebrow": {
-    "group": "stories",
-    "value": "Stories",
-    "multiline": false
-  },
-  "storiesTitle": {
-    "group": "stories",
-    "value": "This is what support looks like.",
-    "multiline": false
-  },
-  "storiesIntro": {
-    "group": "stories",
-    "value": "Meet the people and see the moments behind our work, through stories from our outreach.",
-    "multiline": false
-  },
   "testimonialEyebrow": {
-    "group": "stories",
-    "value": "A voice from our community",
+    "group": "gallery",
+    "value": "In her words",
     "multiline": false
-  },
-  "testimonialTitle": {
-    "group": "stories",
-    "value": "Behind every outreach,\na personal story.",
-    "multiline": true
   },
   "testimonialIntro": {
-    "group": "stories",
-    "value": "Hear from Tobi, in her own words, about her experience with MamaMeds.",
-    "multiline": false
-  },
-  "testimonialButton": {
-    "group": "stories",
-    "value": "Be part of our next chapter",
+    "group": "gallery",
+    "value": "Tobi shares her experience with MamaMeds.",
     "multiline": false
   },
   "founderEyebrow": {
@@ -166,22 +126,32 @@ export const copyFields = {
   },
   "navAbout": {
     "group": "settings",
-    "value": "About MamaMeds",
+    "value": "About",
     "multiline": false
   },
-  "navVolunteer": {
+  "navImpact": {
     "group": "settings",
-    "value": "Volunteer",
+    "value": "Our impact",
+    "multiline": false
+  },
+  "navGallery": {
+    "group": "settings",
+    "value": "Gallery",
     "multiline": false
   },
   "navFounder": {
     "group": "settings",
-    "value": "About the Founder",
+    "value": "Founder",
+    "multiline": false
+  },
+  "navInvolved": {
+    "group": "settings",
+    "value": "Get involved",
     "multiline": false
   },
   "navContact": {
     "group": "settings",
-    "value": "Contact Us",
+    "value": "Contact",
     "multiline": false
   },
   "navDonate": {
@@ -241,8 +211,8 @@ export const copyFields = {
   },
   "directionStatus": {
     "group": "direction",
-    "value": "MamaMeds is a registered 501(c)(3) nonprofit.",
-    "multiline": false
+    "value": "MamaMeds is a registered 501(c)(3) nonprofit working to reduce maternal mortality in Nigeria.",
+    "multiline": true
   },
   "donateStatus": {
     "group": "involved",
@@ -255,13 +225,13 @@ export const copyFields = {
     "multiline": false
   },
   "galleryTitle": {
-    "group": "stories",
-    "value": "More outreach moments",
+    "group": "gallery",
+    "value": "Gallery",
     "multiline": false
   },
-  "galleryHint": {
-    "group": "stories",
-    "value": "Swipe or use the controls to explore.",
+  "galleryIntro": {
+    "group": "gallery",
+    "value": "Moments from our outreach.",
     "multiline": false
   }
 } as const;

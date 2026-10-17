@@ -3,14 +3,18 @@ import { cache } from 'react';
 import { unstable_cache } from 'next/cache';
 import { draftMode } from 'next/headers';
 import { cmsEnabled, getSanityClient } from './client';
+import { copyFields } from './copy';
 import { defaultWebsite } from './defaults';
 import { websiteSchema, WEBSITE_TAG } from './model';
 import { websiteQuery } from './query';
 
 async function fetchWebsite(preview: boolean) {
-  const result = await getSanityClient(preview).fetch(websiteQuery, {}, { cache: 'no-store' });
+  const result = await getSanityClient(preview).fetch<Record<string, unknown> | null>(websiteQuery, {}, { cache: 'no-store' });
   // Throw on missing/invalid documents. Never replace good cached content with a fallback on failure.
-  return websiteSchema.parse(result);
+  if (!result) return websiteSchema.parse(result);
+  // Copy fields added in a code release may not exist in the CMS yet; use their approved defaults until edited.
+  const added = Object.fromEntries(Object.keys(copyFields).filter(key => result[key] === undefined).map(key => [key, defaultWebsite[key as keyof typeof copyFields]]));
+  return websiteSchema.parse({ ...result, ...added });
 }
 
 export const getWebsite = cache(async () => {
